@@ -30,7 +30,7 @@ tcprtt_tp.bpf.o: tcprtt_tp.bpf.c vmlinux.h
 tcprtt_tp.skel.h: tcprtt_tp.bpf.o
 	bpftool gen skeleton $< > $@
 
-t: tcprtt_tp.c tcprtt_tp.skel.h
+tcprtt_tp: tcprtt_tp.c tcprtt_tp.skel.h
 	clang -g tcprtt_tp.c -lbpf -lelf -lz -o $@
 
 clean:
