@@ -8,7 +8,9 @@
 #include "tcprtt.h"
 
 #include "bpf_tracing_net.h"
-    
+
+char LICENSE[] SEC("license") = "Dual BSD/GPL";
+
 // TODO: define ring buffer
 struct {
     __uint(type, BPF_MAP_TYPE_RINGBUF);
