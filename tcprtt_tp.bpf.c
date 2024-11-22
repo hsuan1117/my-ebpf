@@ -9,13 +9,17 @@
 
 // TODO: define ring buffer
 struct {
+    __uint(type, BPF_MAP_TYPE_RINGBUF);
+    __uint(max_entries, 256 * 1024);
+} rb SEC(".maps");
+
+// TODO: define hash map
+struct {
     __uint(type, BPF_MAP_TYPE_HASH);
     __uint(max_entries, 8192);
     __type(key, const void *);
     __type(value, u64);
 } last_seen SEC(".maps");
-
-// TODO: define hash map
 
 SEC("tracepoint/sock/inet_sock_set_state")
 int handle_set_state(struct trace_event_raw_inet_sock_set_state *ctx)
